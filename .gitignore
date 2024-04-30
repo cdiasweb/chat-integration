@@ -6,7 +6,6 @@
 node_modules
 
 # output
-build
 storybook-static
 docs
 
