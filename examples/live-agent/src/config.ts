@@ -1,6 +1,6 @@
 import { AssistantOptions, ChatConfig } from '@voiceflow/react-chat';
 
-import imageLogo from './logo.jpeg';
+import imageLogo from 'https://cdiasweb.github.io/chat-integration/examples/live-agent/shared/logo.jpeg';
 
 const IMAGE = imageLogo;
 const AVATAR = imageLogo;
