@@ -11,7 +11,7 @@ import { SocketEvent } from '../shared/socket-event.enum';
 
 const SESSION_USER_ID_KEY = 'session:user_id';
 const SESSION_CONVERSATION_ID_KEY = 'session:conversation_id';
-
+const SERVER_DOMAIN = '167.71.185.33:9099';
 export interface LiveAgentEvents {
   live_agent: (platform: LiveAgentPlatform) => void;
 }
@@ -41,7 +41,7 @@ const extractHistory = (api: RuntimeState['api']) =>
 
 export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
   return useMemo(() => {
-    const client = new FetchClient({ baseURL: 'http://localhost:9099' });
+    const client = new FetchClient({ baseURL: `http://${SERVER_DOMAIN}` });
 
     let socket: WebSocket | null = null;
     let isEnabled = false;
@@ -68,7 +68,7 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
 
         const subscribeToConversation = (platform: LiveAgentPlatform, userID: string, conversationID: string) => {
           socket = new WebSocket(
-            `ws://localhost:9099/${platform}/user/${userID}/conversation/${conversationID}/socket`
+            `ws://${SERVER_DOMAIN}/${platform}/user/${userID}/conversation/${conversationID}/socket`
           );
           socket.onmessage = (message) => {
             const event = JSON.parse(message.data);
