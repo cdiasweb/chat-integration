@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "dev": "tsx --watch src/main.ts",
+    "build": "yarn build",
     "test:types": "yarn g:tsc --noEmit"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "body-parser": "1.20.2",
     "cors": "2.8.5",
     "dotenv": "16.3.1",

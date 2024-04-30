@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "yarn g:run-p dev:app dev:server",
     "dev:app": "vite",
+    "build:app": "vite build",
     "dev:server": "cd server && yarn dev",
     "test:types": "yarn g:tsc --noEmit"
   },
