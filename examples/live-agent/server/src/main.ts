@@ -9,13 +9,28 @@ import { gorgiasRoutes } from './gorgias/gorgias.routes';
 
 const { app } = expressWS(express());
 
+// Increase limit to 10MB (adjust as needed)
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+
 app.use(cors({
   origin: 'http://localhost:3006'
 }));
 
-// Increase limit to 10MB (adjust as needed)
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3006');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Pass to next layer of middleware
+  next();
+});
 
 gorgiasRoutes(app);
 
