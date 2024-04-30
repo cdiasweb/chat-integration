@@ -41,7 +41,7 @@ const extractHistory = (api: RuntimeState['api']) =>
 
 export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
   return useMemo(() => {
-    const client = new FetchClient({ baseURL: `http://${SERVER_DOMAIN}` });
+    const client = new FetchClient({ baseURL: `https://${SERVER_DOMAIN}` });
 
     let socket: WebSocket | null = null;
     let isEnabled = false;
@@ -68,7 +68,7 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
 
         const subscribeToConversation = (platform: LiveAgentPlatform, userID: string, conversationID: string) => {
           socket = new WebSocket(
-            `ws://${SERVER_DOMAIN}/${platform}/user/${userID}/conversation/${conversationID}/socket`
+            `wss://${SERVER_DOMAIN}/${platform}/user/${userID}/conversation/${conversationID}/socket`
           );
           socket.onmessage = (message) => {
             const event = JSON.parse(message.data);
