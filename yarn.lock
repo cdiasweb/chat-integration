@@ -6191,7 +6191,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/react-chat@workspace:*, @voiceflow/react-chat@workspace:packages/react-chat":
+"@voiceflow/react-chat@workspace:*, @voiceflow/react-chat@workspace:^, @voiceflow/react-chat@workspace:packages/react-chat":
   version: 0.0.0-use.local
   resolution: "@voiceflow/react-chat@workspace:packages/react-chat"
   dependencies:
@@ -17437,6 +17437,7 @@ __metadata:
     "@voiceflow/eslint-config": 7.5.0
     "@voiceflow/git-branch-check": 1.4.1
     "@voiceflow/prettier-config": 1.5.1
+    "@voiceflow/react-chat": "workspace:^"
     "@voiceflow/tsconfig": 1.7.1
     "@voiceflow/vitest-config": 1.2.2
     dependency-cruiser: 16.3.1
