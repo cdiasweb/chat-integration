@@ -11,7 +11,7 @@ import { SocketEvent } from '../shared/socket-event.enum';
 
 const SESSION_USER_ID_KEY = 'session:user_id';
 const SESSION_CONVERSATION_ID_KEY = 'session:conversation_id';
-const SERVER_DOMAIN = '167.71.185.33:9099';
+const SERVER_DOMAIN = 'chatbot-farmapiel.com:9099';
 export interface LiveAgentEvents {
   live_agent: (platform: LiveAgentPlatform) => void;
 }
