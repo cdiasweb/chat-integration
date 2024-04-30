@@ -1,11 +1,13 @@
 import { AssistantOptions, ChatConfig } from '@voiceflow/react-chat';
 
-const IMAGE = 'https://picsum.photos/seed/1/200/300';
-const AVATAR = 'https://picsum.photos/seed/1/80/80';
+import imageLogo from './logo.jpeg';
+
+const IMAGE = imageLogo;
+const AVATAR = imageLogo;
 
 export const ASSISTANT: AssistantOptions = AssistantOptions.parse({
-  title: 'Live Agent Demo',
-  description: 'Demonstration of integrating Voiceflow with Intercom.',
+  title: "Asistencia Virtual Farmapiel",
+  description: "Deja que te ayude.",
   image: IMAGE,
   avatar: AVATAR,
 });
