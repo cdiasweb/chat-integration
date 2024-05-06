@@ -232,7 +232,7 @@ ${"<br/>".repeat(t.length-2)}
           <input type="text" class="name" name="Nombre" required><br><br>
 
           <label for="email">Email</label>
-          <input type="email" class="email" name="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" title="Dirección de correo electrónico no válida"><br><br>
+          <input type="email" class="email" name="Email" required title="Dirección de correo electrónico no válida"><br><br>
 
           <label for="orderNumber">Order Number</label>
           <input type="text" class="orderNumber" name="orderNumber" required pattern="^\\d{4}$" title="Número de pedido no válido, introduzca exactamente 4 dígitos"><br><br>
@@ -273,7 +273,7 @@ ${"<br/>".repeat(t.length-2)}
           <input type="text" class="name" name="Nombre" required><br><br>
 
           <label for="email">Email</label>
-          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" title="Dirección de correo electrónico no válida"><br><br>
+          <input type="email" class="email" name="email" required title="Dirección de correo electrónico no válida"><br><br>
 
           <input type="submit" class="submit" value="Enviar">
         `,n.addEventListener("submit",function(r){r.preventDefault();const a=n.querySelector(".name"),i=n.querySelector(".email");if(!a.checkValidity()||!i.checkValidity()){a.classList.add("invalid"),i.classList.add("invalid");return}n.querySelector(".submit").remove(),window.voiceflow.chat.interact({type:"complete",payload:{name:a.value,email:i.value}})}),t.appendChild(n)}},Eoe={name:"Confetti",type:"effect",match:({trace:e})=>e.type==="ext_confetti"||e.payload.name==="ext_confetti",effect:({trace:e})=>{const t=document.querySelector("#confetti-canvas");var n=confetti.create(t,{resize:!0,useWorker:!0});n({particleCount:200,spread:160})}},yoe={name:"Copy Code",type:"response",match:({trace:e})=>e.type==="ext_discount"||e.payload.name==="ext_discount",render:({trace:e,element:t})=>{const n=document.createElement("div");n.innerHTML=`
