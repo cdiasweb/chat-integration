@@ -126,7 +126,7 @@ export const DiscountFormExtension = {
           <input type="text" class="name" name="Nombre" required><br><br>
 
           <label for="email">Email</label>
-          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Dirección de correo electrónico no válida"><br><br>
+          <input type="email" class="email" name="email" required title="Dirección de correo electrónico no válida"><br><br>
 
           <input type="submit" class="submit" value="Enviar">
         `
