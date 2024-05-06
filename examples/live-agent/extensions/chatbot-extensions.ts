@@ -44,7 +44,7 @@ export const FormExtension = {
           <input type="text" class="name" name="Nombre" required><br><br>
 
           <label for="email">Email</label>
-          <input type="email" class="email" name="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Dirección de correo electrónico no válida"><br><br>
+          <input type="email" class="email" name="Email" required title="Dirección de correo electrónico no válida"><br><br>
 
           <label for="orderNumber">Order Number</label>
           <input type="text" class="orderNumber" name="orderNumber" required pattern="^\\d{4}$" title="Número de pedido no válido, introduzca exactamente 4 dígitos"><br><br>
