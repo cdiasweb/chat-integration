@@ -1,5 +1,10 @@
 import { AssistantOptions, ChatConfig } from '@voiceflow/react-chat';
-import {FormExtension} from "../extensions/chatbot-extensions";
+import {
+  ConfettiExtension,
+  DiscountFormExtension,
+  FormExtension,
+  GetYourDiscount
+} from "../extensions/chatbot-extensions";
 const imageLogo = 'https://cdiasweb.github.io/chat-integration/examples/live-agent/build/logo.jpeg';
 
 const IMAGE = imageLogo;
@@ -11,7 +16,7 @@ export const ASSISTANT: AssistantOptions = AssistantOptions.parse({
   image: IMAGE,
   avatar: AVATAR,
   color: '#09A1B9',
-  extensions: [FormExtension]
+  extensions: [FormExtension, DiscountFormExtension, ConfettiExtension, GetYourDiscount]
 });
 
 export const CONFIG = ChatConfig.parse({
