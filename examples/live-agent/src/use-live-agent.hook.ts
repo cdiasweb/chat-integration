@@ -48,6 +48,8 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
 
     return {
       extend: (api: RuntimeState['api']): RuntimeState['api'] => {
+        window.voiceflow ??= {};
+        window.voiceflow.chat ??= api;
         const addSystemTurn = (message: string) =>
           api.addTurn({
             ...createTurn(TurnType.SYSTEM),
