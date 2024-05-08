@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import { match } from 'ts-pattern';
 
 import type { LiveAgentPlatform } from '../shared/live-agent-platform.enum';
-import { SocketEvent } from '../shared/socket-event.enum';
+import {SocketEvent} from "../shared/socket-event.enum";
 
 const SESSION_USER_ID_KEY = 'session:user_id';
 const SESSION_CONVERSATION_ID_KEY = 'session:conversation_id';
