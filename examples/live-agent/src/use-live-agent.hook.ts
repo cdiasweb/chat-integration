@@ -94,7 +94,10 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
           continueConversation();
         };
 
-        const talkToHuman = async (platform: LiveAgentPlatform) => {
+        const talkToHuman = async (payload: any) => {
+          console.log('talkToHuman', payload);
+          const platform = payload.platform;
+          const { name, email } = payload;
           const isPlatformEnabled = await client
             .head(`/${platform}`)
             .then(() => true)
@@ -115,7 +118,7 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
 
           const { userID, conversationID } = await client
             .post(`/${platform}/conversation`, {
-              json: { userID: prevUserID, history },
+              json: { userID: prevUserID, history, name, email },
             })
             .json<any>();
 

@@ -61,8 +61,8 @@ export class GorgiasService {
   }
 
   public async createConversation(conversationData: any) {
-    const name = conversationData.history[3].text;
-    const email = conversationData.history[5].text;
+    const name = conversationData?.name ?? 'Empty name';
+    const email = conversationData?.email ?? 'empty@email.com'
     console.log(name, email);
 
     const ticket = await this.createTicket(name, email, conversationData.history);

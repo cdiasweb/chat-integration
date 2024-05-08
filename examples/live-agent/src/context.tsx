@@ -15,7 +15,7 @@ export const RuntimeProvider: React.FC<React.PropsWithChildren> = ({ children })
     <BaseProvider
       assistant={ASSISTANT}
       config={CONFIG}
-      traceHandlers={[LiveAgent((platform) => emitter.emit('live_agent', platform))]}
+      traceHandlers={[LiveAgent((payload) => emitter.emit('live_agent', payload))]}
       extend={liveAgent.extend}
     >
       {children}
