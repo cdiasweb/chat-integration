@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx --watch src/main.ts",
-    "build": "yarn build",
+    "build": "tsc --build",
     "test:types": "yarn g:tsc --noEmit"
   },
   "dependencies": {
