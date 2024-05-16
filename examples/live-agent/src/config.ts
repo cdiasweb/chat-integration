@@ -15,8 +15,9 @@ export const ASSISTANT: AssistantOptions = AssistantOptions.parse({
   description: "Deja que te ayude.",
   image: IMAGE,
   avatar: AVATAR,
-  color: '#09A1B9',
-  extensions: [FormExtension, DiscountFormExtension, ConfettiExtension, GetYourDiscount]
+  color: '#7199A0',
+  extensions: [FormExtension, DiscountFormExtension, ConfettiExtension, GetYourDiscount],
+  watermark: false
 });
 
 export const CONFIG = ChatConfig.parse({

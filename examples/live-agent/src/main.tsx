@@ -5,6 +5,8 @@ import { RuntimeProvider } from './context';
 
 createRoot(document.getElementById('root')!).render(
   <RuntimeProvider>
-    <ChatWidget chatAPI={undefined} />
+    <ChatWidget chatAPI={undefined}>
+
+    </ChatWidget>
   </RuntimeProvider>
 );
