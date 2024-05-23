@@ -55,33 +55,43 @@ var GorgiasService = /** @class */ (function () {
     };
     GorgiasService.prototype.connectAgent = function (conversation) {
         return __awaiter(this, void 0, void 0, function () {
-            var agent, conversationID;
-            var _a, _b, _c, _d, _e;
-            return __generator(this, function (_f) {
-                agent = {
-                    name: (_c = (_b = (_a = conversation === null || conversation === void 0 ? void 0 : conversation.ticket) === null || _a === void 0 ? void 0 : _a.assignee_user) === null || _b === void 0 ? void 0 : _b.firstname) !== null && _c !== void 0 ? _c : 'Agent',
-                };
-                conversationID = (_e = (_d = conversation === null || conversation === void 0 ? void 0 : conversation.ticket) === null || _d === void 0 ? void 0 : _d.id) !== null && _e !== void 0 ? _e : '';
-                console.log('Connect Agent: ', agent, ' Conversation ID: ', conversationID);
-                // Check if already assigned
-                if (this.conversationsAssigned.get(conversationID)) {
-                    console.warn('Agent already assigned to conversation ID: ', conversationID);
-                    return [2 /*return*/];
+            var agent, conversationID, ticketClosed;
+            var _a, _b, _c, _d, _e, _f;
+            return __generator(this, function (_g) {
+                switch (_g.label) {
+                    case 0:
+                        agent = {
+                            name: (_c = (_b = (_a = conversation === null || conversation === void 0 ? void 0 : conversation.ticket) === null || _a === void 0 ? void 0 : _a.assignee_user) === null || _b === void 0 ? void 0 : _b.firstname) !== null && _c !== void 0 ? _c : 'Agent',
+                        };
+                        conversationID = (_e = (_d = conversation === null || conversation === void 0 ? void 0 : conversation.ticket) === null || _d === void 0 ? void 0 : _d.id) !== null && _e !== void 0 ? _e : '';
+                        console.log('Connect Agent: ', agent, ' Conversation ID: ', conversationID);
+                        if (!this.conversationsAssigned.get(conversationID)) return [3 /*break*/, 3];
+                        ticketClosed = ((_f = conversation === null || conversation === void 0 ? void 0 : conversation.ticket) === null || _f === void 0 ? void 0 : _f.status) === 'closed';
+                        if (!ticketClosed) return [3 /*break*/, 2];
+                        console.log('Disconnecting agent...');
+                        return [4 /*yield*/, this.disconnectAgent(conversation)];
+                    case 1:
+                        _g.sent();
+                        return [2 /*return*/];
+                    case 2:
+                        console.warn('Agent already assigned to conversation ID: ', conversationID);
+                        return [2 /*return*/];
+                    case 3:
+                        this.conversationsAssigned.set(conversationID, true);
+                        this.send(conversationID, (0, sockets_1.connectLiveAgent)(conversation, agent));
+                        return [2 /*return*/];
                 }
-                this.conversationsAssigned.set(conversationID, true);
-                this.send(conversationID, (0, sockets_1.connectLiveAgent)(conversation, agent));
-                return [2 /*return*/];
             });
         });
     };
     GorgiasService.prototype.disconnectAgent = function (conversation) {
         return __awaiter(this, void 0, void 0, function () {
             var agent;
-            var _a;
-            return __generator(this, function (_b) {
-                agent = 'hardcoded';
+            var _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                agent = (_c = (_b = (_a = conversation === null || conversation === void 0 ? void 0 : conversation.ticket) === null || _a === void 0 ? void 0 : _a.assignee_user) === null || _b === void 0 ? void 0 : _b.firstname) !== null && _c !== void 0 ? _c : 'Agent';
                 this.send(conversation.id, (0, sockets_1.disconnectLiveAgent)(conversation, agent));
-                (_a = this.conversations.get(conversation.id)) === null || _a === void 0 ? void 0 : _a.close();
+                (_d = this.conversations.get(conversation.id)) === null || _d === void 0 ? void 0 : _d.close();
                 this.conversations.delete(conversation.id);
                 return [2 /*return*/];
             });
