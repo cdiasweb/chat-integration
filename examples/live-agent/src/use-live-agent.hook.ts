@@ -74,14 +74,15 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
           );
           socket.onmessage = (message) => {
             const event = JSON.parse(message.data);
-
+            const agentConnectMessage = import.meta?.env?.CONNECT_AGENT_MESSAGE ?? 'connecting you with';
+            const agentDisconnectMessage = import.meta?.env?.CONNECT_AGENT_MESSAGE ?? 'has left the chat';
             match(event)
               .with({ type: SocketEvent.LIVE_AGENT_CONNECT }, () =>
-                addSystemTurn(`connecting you with ${event.data.agent.name}`)
+                addSystemTurn(`${agentConnectMessage} ${event.data.agent.name}`)
               )
               .with({ type: SocketEvent.LIVE_AGENT_MESSAGE }, () => addSystemTurn(event.data.message))
               .with({ type: SocketEvent.LIVE_AGENT_DISCONNECT }, () => {
-                addSystemTurn(`${event.data.agent.name} has left the chat`);
+                addSystemTurn(`${event.data.agent.name} ${agentDisconnectMessage}`);
                 talkToRobot();
               })
               .otherwise(() => console.error('unexpected event', event));

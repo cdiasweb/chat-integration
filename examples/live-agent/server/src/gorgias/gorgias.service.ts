@@ -26,8 +26,15 @@ export class GorgiasService {
     const conversationID = conversation?.ticket?.id ?? '';
     console.log('Connect Agent: ', agent, ' Conversation ID: ', conversationID);
 
-    // Check if already assigned
+    // Check if already assigned or close ticket
     if (this.conversationsAssigned.get(conversationID)) {
+      const ticketClosed = conversation?.ticket?.status === 'closed';
+      if (ticketClosed) {
+        console.log('Disconnecting agent...');
+        await this.disconnectAgent(conversation);
+        return;
+      }
+
       console.warn('Agent already assigned to conversation ID: ', conversationID);
       return;
     }
@@ -38,7 +45,7 @@ export class GorgiasService {
   }
 
   public async disconnectAgent(conversation: any) {
-    const agent = 'hardcoded';
+    const agent = conversation?.ticket?.assignee_user?.firstname ?? 'Agent';
 
     this.send(conversation.id, disconnectLiveAgent(conversation, agent));
     this.conversations.get(conversation.id)?.close();
